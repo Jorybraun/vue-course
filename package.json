@@ -1,0 +1,41 @@
+{
+  "name": "twitter-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "twitter": "node src/twitter-api.js",
+    "build": "webpack --config ./config/webpack/webpack.base.config.js",
+    "start:client": "webpack-dev-server --config ./config/webpack/webpack.base.config.js",
+    "start:server": "nodemon ./src/server localhost 8080"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "morgan": "^1.9.0",
+    "oauth": "^0.9.15",
+    "twit": "^2.2.9",
+    "vue": "^2.5.13",
+    "watson-developer-cloud": "^3.0.5"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-runtime": "^6.26.0",
+    "css-loader": "^0.28.9",
+    "html-webpack-plugin": "^2.30.1",
+    "nodemon": "^1.14.11",
+    "vue-loader": "^13.7.0",
+    "vue-template-compiler": "^2.5.13",
+    "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^2.0.4",
+    "webpack-dev-server": "^2.11.1",
+    "webpack-hot-middleware": "^2.21.0"
+  }
+}
