@@ -32,7 +32,6 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-            hotReload: true,
             loaders: {
                 scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
                 sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
@@ -46,6 +45,10 @@ module.exports = {
         loader: 'babel-loader',
         // don't transform node_modules folder (which don't need to be compiled)
         exclude: /node_modules/
+      },
+      {
+        test: /\.(sass|scss)$/,
+        loaders: ["style-loader","css-loader","sass-loader"]
       }
     ]
   },

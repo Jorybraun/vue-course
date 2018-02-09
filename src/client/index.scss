@@ -1,0 +1,37 @@
+@import '~bulma/bulma';
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    min-height: 100vh;
+    height: 100%;
+}
+
+.container > .box {
+    max-width: 500px;
+    width: 100%;
+}
+
+.search {
+    margin: 0px 0px 20px 0px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-flow: row;
+}
+
+.media-content {
+    height: auto;
+    overflow: none !important;
+}
+
+.flex-fieldset {
+    box-sizing: content-box;
+    display: flex;
+}
+
+.tweet {
+    margin-top: 24px;
+}

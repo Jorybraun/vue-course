@@ -1,34 +1,48 @@
+<template>
+    <div class="container">
+        <div class="box">
+            <timer-component title="Time Until We Know Vue"  finishTime="Thu Feb 09 2018 14:00:00 GMT-0500 (EST)"/>
+        </div>
+        <div class="box">
+            <form class='control' @submit.prevent='getTweets'>
+                <div class='flex-fieldset'>
+                    <input type="text" class='input' v-model='query'> 
+                    <button class='button is-primary is-outlined'> Get Tweets </button>
+                </div>
+            </form>
+            <router-view :tweets='tweets'></router-view>
+        </div>
+    </div>
+</template>
 <script>
-    export default {
-        name: 'App',
+    import timerComponent from './components/timerComponent.vue';
+    import cardComponent from './components/cardComponent.vue';
+    import { mapActions } from 'vuex';
+
+    export default {  
+        components: {
+            timerComponent,
+            cardComponent
+        },
         data() {
             return {
-                title: 'Tweet Analyzer 4000', 
-                tweets: [
-                    { 
-                        author: '@theRealTrump',
-                        message: 'im gonna build a wall',
-                        avatar: ''
-                    }
-                ]
+                query: '',
+                tweets: [],
             }
         },
-        template: `
-            <div>
-                <header>
-                    {{ title }}
-                </header>
-                <main>
-                    <ul>
-                        <li v-for="(tweet, i) in tweets" :key="i">
-                            {{ tweet }}
-                        </li>
-                    </ul>
-                </main>
-                <footer>
-
-                </footer>
-            </div>
-        `
+        methods: {
+            getTweets() {
+                // write method to get tweets
+                fetch(`/api/tweets/${this.query}`)
+                    .then((data) => data.json())
+                    .then((data) => {
+                        this.tweets.push(data.analyzedTweets[0])
+                    });
+            }
+        }
     }
 </script>
+
+<style>
+
+</style>
