@@ -1,0 +1,105 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        // Thu Feb 09 2018 14:00:00 GMT-0500 (EST)
+    const timerComponent = {
+        name: 'timerComponent',
+        data() {
+            return { 
+                now:  '',
+            }
+        },
+        props: ['finishTime'],
+        filters: {
+            twoDigits(input) {
+                const time = ''+input;
+                return time.length <=1 ? '0'+time : time; 
+            }
+        },
+        methods: {
+            getTime(time){
+                return Math.trunc((new Date().getTime() / 1000));
+            }
+        },
+        computed: {
+            ends() {
+                return new Date(this.finishTime).getTime() / 1000;
+            },
+            seconds() {
+                return (this.ends - this.now) % 60;
+            },
+            minutes() {
+                return Math.trunc(((this.ends - this.now) / 60) % 60); 
+            },
+            hours() {
+                return Math.trunc(((this.ends - this.now) / 60 / 60) % 24);  
+            }
+        },
+        beforeMount() {
+            setInterval(() => {
+                this.now = this.getTime();
+            }, 1000)
+        },
+        template: `
+            <div class="timer">
+                <div class="title">
+                    <h2>
+                        Time Until We Know Vue
+                    </h2>
+                </div>
+                <div class="counter">
+                {{ hours | twoDigits }} : {{ minutes | twoDigits }} : {{ seconds | twoDigits }}
+                </div>
+            </div>
+        `
+    };
+
+    new Vue({
+        el: '#app',
+        components: {
+            timerComponent: timerComponent
+        },
+        template: `<div>
+            <timer-component finishTime="Thu Feb 09 2018 14:00:00 GMT-0500 (EST)"/>
+        </div>`
+    })
+    </script>
+
+    <style>
+        #app {
+            align-items: center;
+            bottom: 0;
+            background-color: #34495e;
+            display: flex;
+            justify-content: center;
+            left: 0;
+            position: absolute;
+            right: 0;
+            font-family: sans-serif;
+            top:0;
+            color: #ffffff;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        .counter {
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+        }
+    
+    </style>
+    <link rel="stylesheet" href="./timer.css">
+</body>
+</html>
